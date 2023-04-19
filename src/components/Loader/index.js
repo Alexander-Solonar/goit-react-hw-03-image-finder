@@ -1,1 +1,1 @@
-// export {defaulte} from './Loader'
+// export {default} from './Loader'

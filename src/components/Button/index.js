@@ -1,1 +1,1 @@
-// export {defaulte} from './Button'
+// export {default} from './Button'
