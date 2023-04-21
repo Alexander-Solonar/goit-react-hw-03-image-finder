@@ -33,7 +33,7 @@ class ImageGalleryItem extends Component {
       <li
         className={css['gallery-item']}
         tabIndex="0"
-        onKeyUp={this.handlePress}
+        onKeyDown={this.handlePress}
       >
         <img onClick={this.openModal} src={webformatURL} alt={tags} />
         {isModal && (
