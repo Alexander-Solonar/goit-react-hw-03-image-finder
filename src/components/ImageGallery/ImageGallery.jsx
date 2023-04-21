@@ -18,8 +18,7 @@ class ImageGallery extends Component {
     const { namePictures, page } = this.props;
 
     if (prevProps.namePictures !== namePictures) {
-      this.setState({ collection: [] });
-      this.setState({ isButton: false });
+      this.setState({ collection: [], isButton: false });
     }
 
     if (prevProps.namePictures !== namePictures || prevProps.page !== page) {
@@ -38,8 +37,7 @@ class ImageGallery extends Component {
           collection: [...collection, ...response],
         }));
 
-        this.setState({ isLoading: false });
-        this.setState({ isButton: true });
+        this.setState({ isLoading: false, isButton: true });
       } catch (error) {
         this.setState({ isLoading: false });
         toast.error(error.message);
