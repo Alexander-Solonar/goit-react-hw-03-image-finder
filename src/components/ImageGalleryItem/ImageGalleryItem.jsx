@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import Modal from 'components/Modal';
 import css from './ImageGalleryItem.module.css';
 
@@ -7,32 +8,52 @@ class ImageGalleryItem extends Component {
     isModal: false,
   };
 
-  showModal = () => {
+  openModal = () => {
     this.setState({ isModal: true });
   };
 
-  closeModal = e => {
+  handleClick = e => {
     if (e.currentTarget === e.target) {
       this.setState({ isModal: false });
     }
   };
 
-  onKeyDown = e => {
-    console.log(e);
+  handlePress = e => {
+    if (e.key === 'Escape') {
+      this.setState({ isModal: false });
+    }
   };
 
   render() {
-    const { item } = this.props;
+    const { largeImageURL, tags, webformatURL } = this.props.item;
+
     const { isModal } = this.state;
 
     return (
-      <li className={css['gallery-item']}>
-        <img onClick={this.showModal} src={item.webformatURL} alt="" />
+      <li
+        className={css['gallery-item']}
+        tabIndex="0"
+        onKeyUp={this.handlePress}
+      >
+        <img onClick={this.openModal} src={webformatURL} alt={tags} />
         {isModal && (
-          <Modal url={item.largeImageURL} closeModal={this.closeModal}></Modal>
+          <Modal
+            url={largeImageURL}
+            tag={tags}
+            closeModal={this.handleClick}
+          ></Modal>
         )}
       </li>
     );
   }
 }
+
+ImageGalleryItem.propTypes = {
+  item: PropTypes.shape({
+    webformatURL: PropTypes.string.isRequired,
+    tags: PropTypes.string.isRequired,
+    largeImageURL: PropTypes.string.isRequired,
+  }),
+};
+
 export default ImageGalleryItem;
