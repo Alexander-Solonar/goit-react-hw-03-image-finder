@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-import { toast } from 'react-toastify';
 import css from './Searchbar.module.css';
 
 class Searchbar extends Component {
@@ -17,12 +16,9 @@ class Searchbar extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const { namePictures } = this.state;
-    const { onSearch } = this.props;
+    const { onSubmit } = this.props;
 
-    if (namePictures.trim() === '') {
-      return toast.error('Enter name please!');
-    }
-    onSearch(namePictures);
+    onSubmit(namePictures);
   };
 
   render() {
@@ -51,7 +47,7 @@ class Searchbar extends Component {
 }
 
 Searchbar.propTypes = {
-  onSearch: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default Searchbar;

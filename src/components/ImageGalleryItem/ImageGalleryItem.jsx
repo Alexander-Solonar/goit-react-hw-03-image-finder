@@ -12,21 +12,24 @@ class ImageGalleryItem extends Component {
     this.setState({ isModal: true });
   };
 
+  closeModal = () => {
+    this.setState({ isModal: false });
+  };
+
   handleClick = e => {
     if (e.currentTarget === e.target) {
-      this.setState({ isModal: false });
+      this.closeModal();
     }
   };
 
   handlePress = e => {
     if (e.key === 'Escape') {
-      this.setState({ isModal: false });
+      this.closeModal();
     }
   };
 
   render() {
     const { largeImageURL, tags, webformatURL } = this.props.item;
-
     const { isModal } = this.state;
 
     return (
