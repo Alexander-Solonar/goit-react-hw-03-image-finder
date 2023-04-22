@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import { Audio } from 'react-loader-spinner';
-import 'react-toastify/dist/ReactToastify.css';
 import * as API from './service/api';
 import Searchbar from './Searchbar';
 import ImageGallery from './ImageGallery';
@@ -29,7 +28,7 @@ export class App extends Component {
           collection: [...collection, ...response.hits],
         }));
 
-        if (response.totalHits <= 12) {
+        if (page >= response.totalHits / 12) {
           this.setState({ isLoading: false, isButton: false });
           return;
         }
