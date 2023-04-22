@@ -26,10 +26,10 @@ export class App extends Component {
         const response = await API.fetchPictures(namePictures, page);
 
         this.setState(({ collection }) => ({
-          collection: [...collection, ...response],
+          collection: [...collection, ...response.hits],
         }));
 
-        if (response.length < 12) {
+        if (response.totalHits <= 12) {
           this.setState({ isLoading: false, isButton: false });
           return;
         }
