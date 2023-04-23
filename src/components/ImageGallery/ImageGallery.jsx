@@ -17,9 +17,7 @@ const ImageGallery = ({ items }) => {
 ImageGallery.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
-      item: PropTypes.shape({
-        id: PropTypes.number.isRequired,
-      }),
+      id: PropTypes.number.isRequired,
     })
   ),
 };
