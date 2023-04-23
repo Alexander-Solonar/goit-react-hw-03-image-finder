@@ -1,4 +1,6 @@
 import { Component } from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Audio } from 'react-loader-spinner';
 import * as API from './service/api';
 import Searchbar from './Searchbar';
@@ -67,6 +69,7 @@ export class App extends Component {
         <ImageGallery items={collection}></ImageGallery>
         {isLoading && <Audio wrapperClass={css.loader}></Audio>}
         {isButton && <Button onClick={this.handlePageChange}></Button>}
+        <ToastContainer></ToastContainer>
       </div>
     );
   }
