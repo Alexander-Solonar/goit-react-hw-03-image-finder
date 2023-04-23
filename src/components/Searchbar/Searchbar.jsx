@@ -18,6 +18,10 @@ class Searchbar extends Component {
     const { namePictures } = this.state;
     const { onSubmit } = this.props;
 
+    if (namePictures.trim() === '') {
+      return;
+    }
+
     onSubmit(namePictures);
   };
 

@@ -32,8 +32,11 @@ export class App extends Component {
           this.setState({ isLoading: false, isButton: false });
           return;
         }
+        this.setState({ isLoading: false });
 
-        this.setState({ isLoading: false, isButton: true });
+        setTimeout(() => {
+          this.setState({ isButton: true });
+        }, 500);
       } catch (error) {
         this.setState({ isLoading: false });
         console.log(error.message);

@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-import Modal from 'components/Modal';
+import Modal from '../Modal';
 import css from './ImageGalleryItem.module.css';
 
 class ImageGalleryItem extends Component {
@@ -8,24 +8,10 @@ class ImageGalleryItem extends Component {
     isModal: false,
   };
 
-  openModal = () => {
-    this.setState({ isModal: true });
-  };
-
-  closeModal = () => {
-    this.setState({ isModal: false });
-  };
-
-  handleClick = e => {
-    if (e.currentTarget === e.target) {
-      this.closeModal();
-    }
-  };
-
-  handlePress = e => {
-    if (e.key === 'Escape') {
-      this.closeModal();
-    }
+  toggleModal = () => {
+    this.setState(prevState => ({
+      isModal: !prevState.isModal,
+    }));
   };
 
   render() {
@@ -33,17 +19,13 @@ class ImageGalleryItem extends Component {
     const { isModal } = this.state;
 
     return (
-      <li
-        className={css['gallery-item']}
-        tabIndex="0"
-        onKeyDown={this.handlePress}
-      >
-        <img onClick={this.openModal} src={webformatURL} alt={tags} />
+      <li className={css['gallery-item']}>
+        <img onClick={this.toggleModal} src={webformatURL} alt={tags} />
         {isModal && (
           <Modal
             url={largeImageURL}
             tag={tags}
-            closeModal={this.handleClick}
+            closeModal={this.toggleModal}
           ></Modal>
         )}
       </li>
